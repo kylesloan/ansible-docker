@@ -8,3 +8,8 @@ RUN git clone https://github.com/vmware/vsphere-automation-sdk-python.git && cd 
 # for json_query filter - https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#json-query-filter
 # "You need to install \"jmespath\" prior to running json_query filter"
 RUN pip install jmespath
+
+# entry point/mnt point
+# use -v $(PWD):/mnt/ansible
+RUN mkdir -p /mnt/ansible
+WORKDIR /mnt/ansible
