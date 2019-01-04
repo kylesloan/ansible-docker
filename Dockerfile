@@ -9,6 +9,9 @@ RUN git clone https://github.com/vmware/vsphere-automation-sdk-python.git && cd 
 # "You need to install \"jmespath\" prior to running json_query filter"
 RUN pip install jmespath
 
+# for netscaler calls to work
+RUN pip install nitrosdk-python
+
 # entry point/mnt point
 # use -v $(PWD):/mnt/ansible
 RUN mkdir -p /mnt/ansible
