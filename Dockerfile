@@ -1,5 +1,6 @@
 FROM python:2-stretch
-RUN apt-get update && apt-get install -y vim
+# sshpass required for ldap ssh actions
+RUN apt-get update && apt-get install -y sshpass vim
 RUN pip install ansible
 
 # for dynamic vsphere inventory https://github.com/vmware/vsphere-automation-sdk-python
