@@ -24,5 +24,11 @@ cat ~/bin/ansible-inventory
 docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible-inventory $@
 ```
 
+```
+cat ~/bin/ansible                                                                                                                                                   
+#!/bin/bash
+docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible $@
+```
+
 # updating
 You should make a git tag when you do a change so docker hub keeps that image in a place where it can be pulled for historical reasons.
