@@ -15,19 +15,19 @@ Pip sometimes blows up, so use a stable docker image so everyone can have the fo
 ```
 cat ~/bin/ansible-playbook
 #!/bin/bash
-docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible-playbook $@
+docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible-playbook "$@"
 ```
 
 ```
 cat ~/bin/ansible-inventory
 #!/bin/bash
-docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible-inventory $@
+docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible-inventory "$@"
 ```
 
 ```
-cat ~/bin/ansible                                                                                                                                                   
+cat ~/bin/ansible
 #!/bin/bash
-docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible $@
+docker run -it --rm -v $(pwd):/mnt/ansible ksloanatathenahealth/ansible-docker ansible "$@"
 ```
 
 # updating
