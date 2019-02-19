@@ -13,6 +13,9 @@ RUN pip install jmespath
 # for netscaler calls to work
 RUN pip install nitrosdk-python
 
+# https://github.com/ansible/ansible/issues/52381 -- hopefully this line can go away in the future once this makes it into a release of ansible
+RUN wget -O /usr/local/lib/python2.7/site-packages/ansible/plugins/inventory/vmware_vm_inventory.py https://raw.githubusercontent.com/ansible/ansible/eaa45346a729fb16f4e15881cdcb37921c23b88f/lib/ansible/plugins/inventory/vmware_vm_inventory.py
+
 # entry point/mnt point
 # use -v $(PWD):/mnt/ansible
 RUN mkdir -p /mnt/ansible
