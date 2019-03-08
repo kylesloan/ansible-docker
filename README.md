@@ -47,8 +47,6 @@ validate_certs: False
 with_tags: True
 ```
 
-```
-```
 If you use vmware tags, this will make an ansible group of all hosts that share that tag. Tags can be found after selecting a host, then ACTIONS > Tags & Custom Attributes.
 
 ```
@@ -59,6 +57,22 @@ ansible my-custom-vm-tag -i inventory.flat.yml -m raw -a "hostname" -u root -k
 
 Note that if you do not get a working flat file back, it might be due to either login infomation being incorrect, or the version of ansible being used not having this PR in it - https://github.com/ansible/ansible/issues/52381.  This docker image does have the fix in place.
 
+You can use group_vars and host_vars with dynamic inventory.  The one oddity to note is that the host_vars must match the very long ID given back from vmware, not the actual name of the host
+
+```
+cat group_vars/my-tag-in-vmware.yml                                                                                                                
+mytest: "foo"
+
+ansible my-tag-in-vmware -i inventory.flat.yml -m raw -a "echo {{ mytest }}" -u root -k
+# should return foo
+
+cat
+host_vars/test-node-00_4226bd47-d1f5-d192-9b60-5f1087b7decb.yml
+mytest: "bar"
+
+ansible my-tag-in-vmware -i inventory.flat.yml -m raw -a "echo {{ mytest }}" -u root -k
+# should return bar, given that test-node-00... is the matching host name. Examine inventory.flag.yml to get the exact name to match the host_vars/file to.
+```
 
 # updating
 You should make a git tag when you do a change so docker hub keeps that image in a place where it can be pulled for historical reasons.
