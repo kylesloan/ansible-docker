@@ -1,4 +1,4 @@
-FROM python:2-stretch
+FROM python:3
 # sshpass required for ldap ssh actions
 RUN apt-get update && apt-get install -y sshpass vim
 RUN pip install ansible
@@ -14,7 +14,7 @@ RUN pip install jmespath
 RUN pip install nitrosdk-python
 
 # https://github.com/ansible/ansible/issues/52381 -- hopefully this line can go away in the future once this makes it into a release of ansible
-RUN wget -O /usr/local/lib/python2.7/site-packages/ansible/plugins/inventory/vmware_vm_inventory.py https://raw.githubusercontent.com/ansible/ansible/eaa45346a729fb16f4e15881cdcb37921c23b88f/lib/ansible/plugins/inventory/vmware_vm_inventory.py
+RUN wget -O /usr/local/lib/python3.7/site-packages/ansible/plugins/inventory/vmware_vm_inventory.py https://raw.githubusercontent.com/ansible/ansible/eaa45346a729fb16f4e15881cdcb37921c23b88f/lib/ansible/plugins/inventory/vmware_vm_inventory.py
 
 # https://docs.ansible.com/ansible/latest/user_guide/vault.html#speeding-up-vault-operations
 # make ansible-vault run faster
