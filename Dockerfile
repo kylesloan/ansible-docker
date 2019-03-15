@@ -20,6 +20,10 @@ RUN wget -O /usr/local/lib/python3.7/site-packages/ansible/plugins/inventory/vmw
 # make ansible-vault run faster
 RUN pip install cryptography
 
+# update the symlink of python as some things point to /usr/bin/python and this blows up not being python3
+# leave usr/bin/python2 in place though
+RUN rm /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+
 # entry point/mnt point
 # use -v $(PWD):/mnt/ansible
 RUN mkdir -p /mnt/ansible
